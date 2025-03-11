@@ -1,0 +1,2 @@
+sqlalchemy==1.4.23
+python-dotenv==0.19.1 
