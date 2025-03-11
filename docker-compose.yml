@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - BACKEND_URL=http://backend:5001
+    depends_on:
+      - backend
+    command: flask run --host=0.0.0.0 --port=5000
+
+  backend:
+    build: ./backend
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./backend:/app
+      - ./database:/app/database
+    environment:
+      - FLASK_ENV=development
+      - FLASK_APP=app.py
+      - DATABASE_URL=sqlite:////app/database/budget.db
+    command: flask run --host=0.0.0.0 --port=5001
+
+  database-init:
+    build: ./database
+    volumes:
+      - ./database:/app
+    depends_on:
+      - backend
+    command: python init_db.py 

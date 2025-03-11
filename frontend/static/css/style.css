@@ -1,0 +1,20 @@
+/* Custom styles for Faizans WebApp */
+body {
+    background-color: #f8f9fa;
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+    .card {
+        margin-bottom: 15px;
+    }
+} 
